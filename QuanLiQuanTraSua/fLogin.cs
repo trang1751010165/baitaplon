@@ -19,11 +19,25 @@ namespace QuanLiQuanTraSua
 
         private void button1_Click(object sender, EventArgs e)
         {
-            fTableManager f = new fTableManager();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
+            string userName = textBox1.Text;
+            string passWord = textBox2.Text;
+            if (Login(userName, passWord))
+            {
+                fTableManager f = new fTableManager();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!");
+            }
         }
+        bool Login(String userName, string passWord)
+        {
+            return false;
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
