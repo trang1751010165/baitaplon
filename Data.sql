@@ -40,3 +40,38 @@ create table BillInfo
 	foreign key (idFood) references dbo.Food(id)
 )
 go
+insert into dbo.Acount
+(
+	DisplayName,
+	UserName,
+	PassWorld,
+	Type
+)
+values (N'trang',
+		N'nguyentrang',
+		N'1',
+		1
+)
+go
+insert into dbo.Acount
+(
+	DisplayName,
+	UserName,
+	PassWorld,
+	Type
+)
+values (N'staff',
+		N'staff',
+		N'1',
+		0
+)
+go
+create proc usp_GetAcountByUserName
+@userName nvarchar(100)
+as
+begin
+	select * from dbo.Acount where UserName=@userName
+end
+go
+Exec dbo.usp_GetAcountByUserName @userName=N'nguyentrang'
+

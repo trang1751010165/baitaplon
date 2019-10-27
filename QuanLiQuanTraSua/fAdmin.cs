@@ -21,9 +21,9 @@ namespace QuanLiQuanTraSua
         }
         void LoadAccountList()
         {
-            string query = "select *from dbo.Acount";
+            string query = "Exec dbo.usp_GetAcountByUserName @userName";
             DataProvider provider = new DataProvider();
-            dataGridView2.DataSource = provider.ExecuteQuery(query);
+            dataGridView2.DataSource = provider.ExecuteQuery(query,new object[] { "nguyentrang" });
         }
     }
 }
