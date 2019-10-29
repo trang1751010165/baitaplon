@@ -74,4 +74,18 @@ begin
 end
 go
 Exec dbo.usp_GetAcountByUserName @userName=N'nguyentrang'
+go
+
+--select * from dbo.Acount where UserName=N'nguyentrang' and PassWorld=N'1'
+
+create proc usp_Login
+@userName nvarchar(100),@passWord nvarchar(100)
+as
+begin
+	select * from dbo.Acount where UserName=@userName and PassWorld=@passWord
+end
+go
+
+
+
 

@@ -17,13 +17,6 @@ namespace QuanLiQuanTraSua
         public fAdmin()
         {
             InitializeComponent();
-            LoadAccountList();
-        }
-        void LoadAccountList()
-        {
-            string query = "Exec dbo.usp_GetAcountByUserName @userName";
-            DataProvider provider = new DataProvider();
-            dataGridView2.DataSource = provider.ExecuteQuery(query,new object[] { "nguyentrang" });
         }
     }
 }
