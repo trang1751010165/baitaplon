@@ -85,7 +85,98 @@ begin
 	select * from dbo.Acount where UserName=@userName and PassWorld=@passWord
 end
 go
+insert dbo.FoodCategory
+(Name)
+values (N'trà')
 
+insert dbo.FoodCategory
+(Name) 
+values (N'đồ ăn')
 
+insert dbo.FoodCategory
+(Name)
+values (N'topping')
 
+insert dbo.Food
+(Name,idCategory,price)
+values (N'trà sữa truyền thống',
+		N'1',
+		N'20000')
+
+insert dbo.Food
+(Name,idCategory,price)
+values (N'trà đào',
+		N'1',
+		N'30000')
+
+insert dbo.Food
+(Name,idCategory,price)
+values (N'trà vải',
+		N'1',
+		N'30000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'hồng trà',
+		N'1',
+		N'25000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'lục trà',
+		N'1',
+		N'30000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'bánh mỳ xúc xích',
+		N'2',
+		N'35000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'bông lan trứng muối',
+		N'2',
+		N'10000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'bánh kem',
+		N'2',
+		N'40000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'bánh tiramusu',
+		N'2',
+		N'37000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'bánh chesse cake',
+		N'2',
+		N'40000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'trân châu trắng',
+		N'3',
+		N'10000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'thạch trái cây',
+		N'3',
+		N'5000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'kem chesse',
+		N'3',
+		N'7000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'trân châu hoàng kim',
+		N'3',
+		N'8000')
+insert dbo.Food
+(Name,idCategory,price)
+values (N'thạch củ năng',
+		N'3',
+		N'6000')
+
+create proc usp_FoodList3
+as select * From dbo.Food
+go
+Exec dbo.usp_FoodList3
 

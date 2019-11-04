@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiQuanTraSua.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,22 @@ namespace QuanLiQuanTraSua
         public fTableManager()
         {
             InitializeComponent();
-            //loadTable();
+            LoadFood();
         }
+        #region Method
+        void LoadFood()
+        {
+            List<Food> foodlist = FoodDAO.Instance.LoadFoodList();
+            foreach(Food item in foodlist)
+            {
+                Button btn = new Button() { Width = FoodDAO.FoodWidth, Height = FoodDAO.FoodHeight };
+                flowLayoutPanel1.Controls.Add(btn);
+                btn.Text = item.Name + Environment.NewLine + Environment.NewLine + item.Price;
+                btn.BackColor = Color.DeepSkyBlue;
+            }
+        }
+        #endregion
+        #region Events
 
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -29,12 +44,6 @@ namespace QuanLiQuanTraSua
             fAdmin f = new fAdmin();
             f.ShowDialog();
         }
-        //private void loadTable()
-        //{
-        //    Button btn = new Button();
-        //    btn.Text = "bàn";
-        //    btn.AutoSize = true;
-        //    flowLayoutPanel1.Controls.Add(btn);
-        //}
+        #endregion
     }
 }
