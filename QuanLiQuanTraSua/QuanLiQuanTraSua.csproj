@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,15 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\AccountDAO.cs" />
-    <Compile Include="DAO\DataProvider.cs" />
-    <Compile Include="DAO\Food.cs" />
-    <Compile Include="DAO\FoodDAO.cs" />
-    <Compile Include="fAcountProfile.cs">
+    <Compile Include="connectData_class.cs" />
+    <Compile Include="fAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fAcountProfile.Designer.cs">
-      <DependentUpon>fAcountProfile.cs</DependentUpon>
+    <Compile Include="fAccount.Designer.cs">
+      <DependentUpon>fAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="fAdmin.cs">
       <SubType>Form</SubType>
@@ -68,16 +66,17 @@
     <Compile Include="fLogin.Designer.cs">
       <DependentUpon>fLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fTableManager.cs">
+    <Compile Include="fManage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fTableManager.Designer.cs">
-      <DependentUpon>fTableManager.cs</DependentUpon>
+    <Compile Include="fManage.Designer.cs">
+      <DependentUpon>fManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="kiemtradn_class.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="fAcountProfile.resx">
-      <DependentUpon>fAcountProfile.cs</DependentUpon>
+    <EmbeddedResource Include="fAccount.resx">
+      <DependentUpon>fAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
@@ -85,8 +84,8 @@
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fTableManager.resx">
-      <DependentUpon>fTableManager.cs</DependentUpon>
+    <EmbeddedResource Include="fManage.resx">
+      <DependentUpon>fManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

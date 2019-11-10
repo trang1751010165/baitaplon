@@ -1,56 +1,76 @@
-﻿using QuanLiQuanTraSua.DAO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+
 
 namespace QuanLiQuanTraSua
 {
     public partial class fLogin : Form
     {
+
+        kiemtradn_class kt = new kiemtradn_class();
+        string cnstr ;
+        SqlConnection cnn;
         public fLogin()
-        {
+        {           
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void fLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (MessageBox.Show("Bạn muốn thoát?", "Thông Báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != System.Windows.Forms.DialogResult.Yes)
+            {
+                e.Cancel = true;
 
-            string userName = textBox1.Text;
-            string passWord = textBox2.Text;
-            if (Login(userName, passWord))
-            {
-                fTableManager f = new fTableManager();
-                this.Hide();
-                f.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!");
             }
         }
-        bool Login(String userName, string passWord)
+
+        private void fLogin_Load(object sender, EventArgs e)
         {
-            return AccountDAO.Instance.Login(userName,passWord);
+            
+            cnstr = @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
+            cnn = new SqlConnection(cnstr);
+            cbChucDanh.Items.Add("admin");
+            cbChucDanh.Items.Add("staff");
         }
 
-
-        private void button2_Click(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void fLogin_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnLogIn_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn có thật sự muốn thoát chương trình?","thông báo",MessageBoxButtons.OKCancel)!=System.Windows.Forms.DialogResult.OK)
+
+            string ten = txtUserName.Text;
+            string pas = txtPassWord.Text;
+            string chu = cbChucDanh.Text;
+            try
             {
-                e.Cancel = true;
+                if (kt.KiemTraDangNhap(ten, pas) == true)
+                {
+                    fManage f = new fManage();                   
+                    fManage.quyen = chu;
+                    this.Hide();
+                    f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!");
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+               
             }
         }
     }
