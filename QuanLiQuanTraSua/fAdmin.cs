@@ -101,22 +101,33 @@ namespace QuanLiQuanTraSua
         }
         private void btnxoasp_Click(object sender, EventArgs e)
         {
-            
-            //try
-            //{
-            //    if (dgvsanpham.Rows.Count > 0)
-            //    {
-            //        int index = dgvsanpham.CurrentRow.Index;
-            //        DataGridViewRow cr = dgvsanpham.Rows[index];
-            //        dgvsanpham.Rows.Remove(cr);
-            //    }
-            //}
-            //catch (SqlException)
-            //{
-            //    MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
-            //}
-            
+            try
+            {
+                if (dgvsanpham.Rows.Count > 0)
+                {
+                    int index = dgvsanpham.CurrentRow.Index;
+                    DataGridViewRow cr = dgvsanpham.Rows[index];
+                    string masp = txtmasp.Text;
+                    string sql = $"delete from [QuanLiQuanTraSua].[dbo].[SanPham] where MaSP = N'{masp}'";
+                    bool isSuccess = _dbConnection.execData(sql);
+                    if (isSuccess)
+                    {
+                        dgvsanpham.Rows.Remove(cr);
+                        GetDataSetSP();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xoa Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
+
+            }
+
         }
         private void btnsuasp_Click(object sender, EventArgs e)
         {
