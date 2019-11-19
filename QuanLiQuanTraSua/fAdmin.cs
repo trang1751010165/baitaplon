@@ -15,39 +15,38 @@ namespace QuanLiQuanTraSua
 {
     public partial class fAdmin : Form
     {
-        SqlConnection cnn;
-        private SqlDataAdapter da;
-        string cnstr;
+        DBConection _dbConnection = new DBConection();
+        
+        
+       
         DataSet ds;
-        SqlCommandBuilder cb;
+        
         DataTable Order;       
         public fAdmin()
         {
             InitializeComponent();
-            cnstr = @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
-            cnn = new SqlConnection(cnstr);
-        }        
-        // --------------------SẢN PHẨM-----------------------------------     
+
+            
+        }
+        
         private void GetDataSetSP()
         {
             try
             {
+                
                 string sql = @"SELECT * FROM SanPham";
-                da = new SqlDataAdapter(sql, cnn);
-                cb = new SqlCommandBuilder(da);
-                ds = new DataSet();
-                da.Fill(ds);
-                dgvsanpham.DataSource = ds.Tables[0];
+                
+                
+                DataTable spTable = _dbConnection.Getdata(sql);
+                
+                dgvsanpham.DataSource = spTable;
 
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                cnn.Close();
-            }
+           
         }
         private void GetDataToComboboxLoaiSP()
         {
@@ -55,10 +54,7 @@ namespace QuanLiQuanTraSua
             {
                 DataTable dt = new DataTable();
                 string sql = @"SELECT * FROM LoaiSanPham";
-                da = new SqlDataAdapter(sql, cnn);
-                cb = new SqlCommandBuilder(da);
-                ds = new DataSet();
-                da.Fill(dt);
+                dt = _dbConnection.Getdata(sql);
                 cmbLoaiSP.DataSource = dt;
                 cmbLoaiSP.DisplayMember = "TenLoaiSP";
                 cmbLoaiSP.ValueMember = "MaLoaiSP";
@@ -67,95 +63,93 @@ namespace QuanLiQuanTraSua
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                cnn.Close();
-            }
-        }
-        
+            
+        }       
         private void btnthemsp_Click(object sender, EventArgs e)
         {
-            cnn.Open();
+            
+            
             try
             {
-                DataRow tt = ds.Tables[0].NewRow();
-                tt["MaSP"] = txtmasp.Text;
-                tt["TenSP"] = txttensp.Text;
-                tt["MaLoaiSP"] = cmbLoaiSP.SelectedValue;
-                tt["DonGia"] = txtdongia.Text;
-                tt["SoLuong"] = txtsoluong.Text;
-                ds.Tables[0].Rows.Add(tt);
+                string masp = txtmasp.Text;
+                string tensp = txttensp.Text;
+                string maloaisp = cmbLoaiSP.SelectedValue.ToString();
+                string dongia = txtdongia.Text;
+                string soluong = txtsoluong.Text;
+                
+                string sql = $" INSERT [dbo].[SanPham] ([MaSP], [TenSP], [MaLoaiSP], [DonGia], [SoLuong]) VALUES (N'{masp}   ', N'{tensp}', N'{maloaisp} ', {dongia}, {soluong})";
+
+                bool isSuccess = _dbConnection.execData(sql);
+                    if(isSuccess)
+                {
+                    GetDataSetSP();
+                }
+                    else
+                {
+                    MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
+                }
+                
+               
+
             }
             catch (SqlException)
             {
                 MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
         private void btnxoasp_Click(object sender, EventArgs e)
         {
-            cnn.Open();
-            try
-            {
-                if (dgvsanpham.Rows.Count > 0)
-                {
-                    int index = dgvsanpham.CurrentRow.Index;
-                    DataGridViewRow cr = dgvsanpham.Rows[index];
-                    dgvsanpham.Rows.Remove(cr);
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
+            
+            //try
+            //{
+            //    if (dgvsanpham.Rows.Count > 0)
+            //    {
+            //        int index = dgvsanpham.CurrentRow.Index;
+            //        DataGridViewRow cr = dgvsanpham.Rows[index];
+            //        dgvsanpham.Rows.Remove(cr);
+            //    }
+            //}
+            //catch (SqlException)
+            //{
+            //    MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
-            }
-            finally
-            {
-                cnn.Close();
-            }
+            //}
+            
         }
         private void btnsuasp_Click(object sender, EventArgs e)
         {
-            cnn.Open();
-            try
-            {
-                if (dgvsanpham.Rows.Count > 0)
-                {
-                    Order = ds.Tables[0];
-                    int index = dgvsanpham.CurrentRow.Index;
-                    DataRow dr = Order.Rows[index];// du lieu dong  =  gia tri dong hien tai
-                    dr.BeginEdit();// bat dau sua
-                    dr["TenSP"] = txttensp.Text;
-                    dr["MaLoaiSP"] = cmbLoaiSP.SelectedValue;
-                    dr["DonGia"] = txtdongia.Text;
-                    dr["SoLuong"] = txtsoluong.Text;
-                    dr.EndEdit();// ket thuc sua
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
+            //try
+            //{
+            //    if (dgvsanpham.Rows.Count > 0)
+            //    {
+            //        Order = ds.Tables[0];
+            //        int index = dgvsanpham.CurrentRow.Index;
+            //        DataRow dr = Order.Rows[index];// du lieu dong  =  gia tri dong hien tai
+            //        dr.BeginEdit();// bat dau sua
+            //        dr["TenSP"] = txttensp.Text;
+            //        dr["MaLoaiSP"] = cmbLoaiSP.SelectedValue;
+            //        dr["DonGia"] = txtdongia.Text;
+            //        dr["SoLuong"] = txtsoluong.Text;
+            //        dr.EndEdit();// ket thuc sua
+            //    }
+            //}
+            //catch (SqlException)
+            //{
+            //    MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
 
-            }
-            finally
-            {
-                cnn.Close();
-            }
-        }
-        private void btnluusp_Click(object sender, EventArgs e)
-        {
+            //}
+            string masp = txtmasp.Text;
+            string tensp = txttensp.Text;
+            string maloaisp = cmbLoaiSP.SelectedValue.ToString();
+            string dongia = txtdongia.Text;
+            string soluong = txtsoluong.Text;
 
-            da.Update(ds);
-        }
+            string sql = $" Update [dbo].[SanPham] ([MaSP], [TenSP], [MaLoaiSP], [DonGia], [SoLuong]) VALUES (N'{masp}   ', N'{tensp}', N'{maloaisp} ', {dongia}, {soluong})";
 
-        private void btnhuysp_Click(object sender, EventArgs e)
-        {
-            ds.Tables[0].RejectChanges();
         }
+       
 
         private void dgvsanpham_SelectionChanged(object sender, EventArgs e)
         {
@@ -181,14 +175,11 @@ namespace QuanLiQuanTraSua
         }
         private void GetDataSetTaiKhoan()
         {
-            cnn.Open();
+            
             try
             {
                 string sql = @"SELECT * FROM TaiKhoan";
-                da = new SqlDataAdapter(sql, cnn);
-                cb = new SqlCommandBuilder(da);
-                ds = new DataSet();
-                da.Fill(ds);
+                
                 dgvtaikhoan.DataSource = ds.Tables[0];
 
             }
@@ -196,10 +187,7 @@ namespace QuanLiQuanTraSua
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
@@ -219,7 +207,7 @@ namespace QuanLiQuanTraSua
         }
         private void btnluutk_Click(object sender, EventArgs e)
         {
-            da.Update(ds);
+            
         }
 
         private void btnhuytk_Click(object sender, EventArgs e)
@@ -228,7 +216,7 @@ namespace QuanLiQuanTraSua
         }
         private void btnsuatk_Click(object sender, EventArgs e)
         {
-            cnn.Open();
+            
             try
             {
                 if (dgvtaikhoan.Rows.Count > 0)
@@ -249,37 +237,44 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
         private void btnthemtk_Click(object sender, EventArgs e)
         {
-            cnn.Open();
+            
             try
             {
+                //string them;
+                //them = "INSERT [dbo].[TaiKhoan] VALUES (N'"+txtusername+"', N'"+txtdisplayName+"', N'"+txtMatKhau+"', N'"+txtChucDanh+"')";
+                //SqlCommand commandthem = new SqlCommand(them, cnn);
+                //commandthem.ExecuteNonQuery();
+                //string sql = @"SELECT * FROM SanPham";
+                //da = new SqlDataAdapter(sql, cnn);
+                //cb = new SqlCommandBuilder(da);
+                //ds = new DataSet();
+                //DataTable table = new DataTable();
+                //da.Fill(table);
+                //dgvsanpham.DataSource = table;
+                string sql = @"SELECT * FROM TaiKhoan";
+                
+                dgvtaikhoan.DataSource = ds.Tables[0];
                 DataRow tt = ds.Tables[0].NewRow();
                 tt["TenDangNhap"] = txtusername.Text;
                 tt["TenHienThi"] = txtdisplayName.Text;
                 tt["ChucDanh"] = txtChucDanh.Text;
                 tt["MatKhau"] = txtMatKhau.Text;
-
                 ds.Tables[0].Rows.Add(tt);
             }
             catch (SqlException)
             {
                 MessageBox.Show("Không thể thêm Tài Khoản vào cơ sở dữ liệu!", "Thông Báo");
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
 
         private void btnxoatk_Click(object sender, EventArgs e)
         {
-            cnn.Open();
+            
             try
             {
                 if (dgvtaikhoan.Rows.Count > 0)
@@ -295,23 +290,19 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
 
         }
         //----------------------LOẠI SẢN PHẨM--------------
         private void GetDataSetLoaiSP()
         {
-            cnn.Open();
+            
             try
             {
                 string sql = @"SELECT * FROM LoaiSanPham";
-                da = new SqlDataAdapter(sql, cnn);
-                cb = new SqlCommandBuilder(da);
+                
                 ds = new DataSet();
-                da.Fill(ds);
+                
                 dgvLoaisp.DataSource = ds.Tables[0];
 
             }
@@ -319,10 +310,7 @@ namespace QuanLiQuanTraSua
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
         private void dgvLoaisp_SelectionChanged(object sender, EventArgs e)
         {
@@ -334,9 +322,14 @@ namespace QuanLiQuanTraSua
         }
         private void btnthemlsp_Click(object sender, EventArgs e)
         {
-            cnn.Open();
+            
             try
-            {                
+            {
+                string sql = @"SELECT * FROM LoaiSanPham";
+                
+                ds = new DataSet();
+               
+                dgvLoaisp.DataSource = ds.Tables[0];
                 DataRow tt = ds.Tables[0].NewRow();
                 tt["MaLoaiSP"] = txtMaloaiSP.Text;
                 tt["TenLoaiSP"] = txtTenLoaisp.Text;
@@ -347,15 +340,12 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }       
         private void btnxoalsp_Click(object sender, EventArgs e)
         {
 
-            cnn.Open();
+            
             try
             {
                 if (dgvsanpham.Rows.Count > 0)
@@ -370,16 +360,13 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
 
         private void btnsualsp_Click(object sender, EventArgs e)
         {
 
-            cnn.Open();
+            
             try
             {
                 if (dgvLoaisp.Rows.Count > 0)
@@ -397,10 +384,7 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
 
             }
-            finally
-            {
-                cnn.Close();
-            }
+            
         }
 
         private void btnhuylsp_Click(object sender, EventArgs e)
@@ -410,7 +394,7 @@ namespace QuanLiQuanTraSua
 
         private void btnluulsp_Click(object sender, EventArgs e)
         {
-            da.Update(ds);
+            
         }
       
         private void fAdmin_FormClosing(object sender, FormClosingEventArgs e)
@@ -424,10 +408,10 @@ namespace QuanLiQuanTraSua
 
         private void fAdmin_Load(object sender, EventArgs e)
         {
-            GetDataToComboboxLoaiSP();
-            GetDataSetSP();
-            GetDataSetLoaiSP();
-            GetDataSetTaiKhoan();
+              GetDataToComboboxLoaiSP();
+              GetDataSetSP();
+            //GetDataSetLoaiSP();
+            //GetDataSetTaiKhoan();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

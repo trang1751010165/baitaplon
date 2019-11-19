@@ -9,21 +9,27 @@ using System.Configuration;
 
 namespace QuanLiQuanTraSua
 {
-    class connectData_class
+    class DBConection
     {
-        string cnstr ;
-        SqlConnection cnn;
+        
 
-        public void Connect()
+        SqlConnection cnn;
+        public DBConection()
+        {
+            string conection= @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
+            cnn = new SqlConnection(conection);
+        }
+        private void Connect()
         {
           
             if (cnn != null && cnn.State == ConnectionState.Closed)
             {
+
                 cnn.Open();
             }
 
         }
-        public void DisConnect()
+        private void DisConnect()
         {
             if (cnn != null && cnn.State == ConnectionState.Open)
             {
@@ -33,8 +39,8 @@ namespace QuanLiQuanTraSua
         }
         public DataTable Getdata(string cmd)
         {
-            cnstr = @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
-            cnn = new SqlConnection(cnstr);
+           
+            
             try
             {
 
@@ -51,6 +57,10 @@ namespace QuanLiQuanTraSua
                 return null;
 
             }
+            finally
+            {
+                DisConnect();
+            }
         }
         public Boolean execData(string cmd)
         {
@@ -66,6 +76,10 @@ namespace QuanLiQuanTraSua
             {
 
                 return false;
+            }
+            finally
+            {
+                DisConnect();
             }
         }
     }

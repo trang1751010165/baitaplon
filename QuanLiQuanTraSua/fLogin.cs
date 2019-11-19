@@ -17,9 +17,9 @@ namespace QuanLiQuanTraSua
     public partial class fLogin : Form
     {
 
-        kiemtradn_class kt = new kiemtradn_class();
-        string cnstr ;
-        SqlConnection cnn;
+        
+     
+       
         public fLogin()
         {           
             InitializeComponent();
@@ -35,9 +35,8 @@ namespace QuanLiQuanTraSua
 
         private void fLogin_Load(object sender, EventArgs e)
         {
+           
             
-            cnstr = @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
-            cnn = new SqlConnection(cnstr);
             cbChucDanh.Items.Add("admin");
             cbChucDanh.Items.Add("staff");
         }
@@ -55,6 +54,8 @@ namespace QuanLiQuanTraSua
             string chu = cbChucDanh.Text;
             try
             {
+                kiemtradn_class kt = new kiemtradn_class();
+
                 if (kt.KiemTraDangNhap(ten, pas) == true)
                 {
                     fManage f = new fManage();                   

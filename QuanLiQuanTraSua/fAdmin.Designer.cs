@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabProduct = new System.Windows.Forms.TabPage();
             this.dgvsanpham = new System.Windows.Forms.DataGridView();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnhuysp = new System.Windows.Forms.Button();
-            this.btnluusp = new System.Windows.Forms.Button();
             this.btnsuasp = new System.Windows.Forms.Button();
             this.btnxoasp = new System.Windows.Forms.Button();
             this.btnthemsp = new System.Windows.Forms.Button();
@@ -53,7 +51,7 @@
             this.panel18 = new System.Windows.Forms.Panel();
             this.txtmasp = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabTypeProduct = new System.Windows.Forms.TabPage();
             this.btnluulsp = new System.Windows.Forms.Button();
             this.btnhuylsp = new System.Windows.Forms.Button();
             this.btnsualsp = new System.Windows.Forms.Button();
@@ -67,7 +65,7 @@
             this.txtMaloaiSP = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabAccount = new System.Windows.Forms.TabPage();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.panel26 = new System.Windows.Forms.Panel();
             this.txtChucDanh = new System.Windows.Forms.TextBox();
@@ -89,7 +87,7 @@
             this.dgvtaikhoan = new System.Windows.Forms.DataGridView();
             this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvsanpham)).BeginInit();
             this.panel9.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -97,11 +95,11 @@
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel18.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabTypeProduct.SuspendLayout();
             this.panel20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaisp)).BeginInit();
             this.panel19.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabAccount.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel23.SuspendLayout();
@@ -111,9 +109,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabProduct);
+            this.tabControl1.Controls.Add(this.tabTypeProduct);
+            this.tabControl1.Controls.Add(this.tabAccount);
             this.tabControl1.Location = new System.Drawing.Point(5, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -121,17 +119,17 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // tabPage2
+            // tabProduct
             // 
-            this.tabPage2.Controls.Add(this.dgvsanpham);
-            this.tabPage2.Controls.Add(this.panel9);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(696, 487);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Thực phẩm ";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabProduct.Controls.Add(this.dgvsanpham);
+            this.tabProduct.Controls.Add(this.panel9);
+            this.tabProduct.Location = new System.Drawing.Point(4, 22);
+            this.tabProduct.Name = "tabProduct";
+            this.tabProduct.Padding = new System.Windows.Forms.Padding(3);
+            this.tabProduct.Size = new System.Drawing.Size(696, 487);
+            this.tabProduct.TabIndex = 1;
+            this.tabProduct.Text = "Thực phẩm ";
+            this.tabProduct.UseVisualStyleBackColor = true;
             // 
             // dgvsanpham
             // 
@@ -145,8 +143,6 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.label8);
-            this.panel9.Controls.Add(this.btnhuysp);
-            this.panel9.Controls.Add(this.btnluusp);
             this.panel9.Controls.Add(this.btnsuasp);
             this.panel9.Controls.Add(this.btnxoasp);
             this.panel9.Controls.Add(this.btnthemsp);
@@ -173,28 +169,6 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "THÔNG TIN SẢN PHẨM";
             this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnhuysp
-            // 
-            this.btnhuysp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnhuysp.Location = new System.Drawing.Point(545, 271);
-            this.btnhuysp.Name = "btnhuysp";
-            this.btnhuysp.Size = new System.Drawing.Size(75, 36);
-            this.btnhuysp.TabIndex = 10;
-            this.btnhuysp.Text = "Hủy";
-            this.btnhuysp.UseVisualStyleBackColor = true;
-            this.btnhuysp.Click += new System.EventHandler(this.btnhuysp_Click);
-            // 
-            // btnluusp
-            // 
-            this.btnluusp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnluusp.Location = new System.Drawing.Point(417, 272);
-            this.btnluusp.Name = "btnluusp";
-            this.btnluusp.Size = new System.Drawing.Size(75, 36);
-            this.btnluusp.TabIndex = 9;
-            this.btnluusp.Text = "Lưu";
-            this.btnluusp.UseVisualStyleBackColor = true;
-            this.btnluusp.Click += new System.EventHandler(this.btnluusp_Click);
             // 
             // btnsuasp
             // 
@@ -364,24 +338,24 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "Mã SP";
             // 
-            // tabPage3
+            // tabTypeProduct
             // 
-            this.tabPage3.Controls.Add(this.btnluulsp);
-            this.tabPage3.Controls.Add(this.btnhuylsp);
-            this.tabPage3.Controls.Add(this.btnsualsp);
-            this.tabPage3.Controls.Add(this.btnxoalsp);
-            this.tabPage3.Controls.Add(this.btnthemlsp);
-            this.tabPage3.Controls.Add(this.panel20);
-            this.tabPage3.Controls.Add(this.dgvLoaisp);
-            this.tabPage3.Controls.Add(this.panel19);
-            this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(696, 487);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Loại thực phẩm";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabTypeProduct.Controls.Add(this.btnluulsp);
+            this.tabTypeProduct.Controls.Add(this.btnhuylsp);
+            this.tabTypeProduct.Controls.Add(this.btnsualsp);
+            this.tabTypeProduct.Controls.Add(this.btnxoalsp);
+            this.tabTypeProduct.Controls.Add(this.btnthemlsp);
+            this.tabTypeProduct.Controls.Add(this.panel20);
+            this.tabTypeProduct.Controls.Add(this.dgvLoaisp);
+            this.tabTypeProduct.Controls.Add(this.panel19);
+            this.tabTypeProduct.Controls.Add(this.label17);
+            this.tabTypeProduct.Location = new System.Drawing.Point(4, 22);
+            this.tabTypeProduct.Name = "tabTypeProduct";
+            this.tabTypeProduct.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTypeProduct.Size = new System.Drawing.Size(696, 487);
+            this.tabTypeProduct.TabIndex = 2;
+            this.tabTypeProduct.Text = "Loại thực phẩm";
+            this.tabTypeProduct.UseVisualStyleBackColor = true;
             // 
             // btnluulsp
             // 
@@ -513,27 +487,27 @@
             this.label17.TabIndex = 12;
             this.label17.Text = "THÔNG TIN LOẠI SẢN PHẨM";
             // 
-            // tabPage4
+            // tabAccount
             // 
-            this.tabPage4.Controls.Add(this.btnResetPass);
-            this.tabPage4.Controls.Add(this.panel26);
-            this.tabPage4.Controls.Add(this.panel25);
-            this.tabPage4.Controls.Add(this.panel23);
-            this.tabPage4.Controls.Add(this.panel24);
-            this.tabPage4.Controls.Add(this.btnhuytk);
-            this.tabPage4.Controls.Add(this.btnluutk);
-            this.tabPage4.Controls.Add(this.btnsuatk);
-            this.tabPage4.Controls.Add(this.btnxoatk);
-            this.tabPage4.Controls.Add(this.btnthemtk);
-            this.tabPage4.Controls.Add(this.dgvtaikhoan);
-            this.tabPage4.Controls.Add(this.label19);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(696, 487);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Tài khoản ";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tabAccount.Controls.Add(this.btnResetPass);
+            this.tabAccount.Controls.Add(this.panel26);
+            this.tabAccount.Controls.Add(this.panel25);
+            this.tabAccount.Controls.Add(this.panel23);
+            this.tabAccount.Controls.Add(this.panel24);
+            this.tabAccount.Controls.Add(this.btnhuytk);
+            this.tabAccount.Controls.Add(this.btnluutk);
+            this.tabAccount.Controls.Add(this.btnsuatk);
+            this.tabAccount.Controls.Add(this.btnxoatk);
+            this.tabAccount.Controls.Add(this.btnthemtk);
+            this.tabAccount.Controls.Add(this.dgvtaikhoan);
+            this.tabAccount.Controls.Add(this.label19);
+            this.tabAccount.Location = new System.Drawing.Point(4, 22);
+            this.tabAccount.Name = "tabAccount";
+            this.tabAccount.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAccount.Size = new System.Drawing.Size(696, 487);
+            this.tabAccount.TabIndex = 3;
+            this.tabAccount.Text = "Tài khoản ";
+            this.tabAccount.UseVisualStyleBackColor = true;
             // 
             // btnResetPass
             // 
@@ -749,7 +723,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fAdmin_FormClosing);
             this.Load += new System.EventHandler(this.fAdmin_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabProduct.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvsanpham)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
@@ -763,15 +737,15 @@
             this.panel17.PerformLayout();
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabTypeProduct.ResumeLayout(false);
+            this.tabTypeProduct.PerformLayout();
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaisp)).EndInit();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
+            this.tabAccount.ResumeLayout(false);
+            this.tabAccount.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -787,12 +761,10 @@
 
         #endregion
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabProduct;
         private System.Windows.Forms.DataGridView dgvsanpham;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnhuysp;
-        private System.Windows.Forms.Button btnluusp;
         private System.Windows.Forms.Button btnsuasp;
         private System.Windows.Forms.Button btnxoasp;
         private System.Windows.Forms.Button btnthemsp;
@@ -811,7 +783,7 @@
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.TextBox txtmasp;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabTypeProduct;
         private System.Windows.Forms.Button btnluulsp;
         private System.Windows.Forms.Button btnhuylsp;
         private System.Windows.Forms.Button btnsualsp;
@@ -825,7 +797,7 @@
         private System.Windows.Forms.TextBox txtMaloaiSP;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabAccount;
         private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.TextBox txtChucDanh;

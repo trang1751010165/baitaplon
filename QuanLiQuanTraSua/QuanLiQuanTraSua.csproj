@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="connectData_class.cs" />
+    <Compile Include="DBConection.cs" />
     <Compile Include="fAccount.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,10 +9,10 @@ namespace QuanLiQuanTraSua
 {
     class kiemtradn_class
     {
-        connectData_class cnd;
+        DBConection cnd;
         public Boolean KiemTraDangNhap(string ten, string pas)
         {
-            cnd = new connectData_class();
+            cnd = new DBConection();
             DataTable dt = cnd.Getdata("select * from dbo.TaiKhoan tk where tk.TenDangNhap = N'" + ten + "' and tk.MatKhau = N'" + pas + "'");
             Boolean check = false;
             if (dt != null)
