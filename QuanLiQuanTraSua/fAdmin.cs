@@ -15,36 +15,33 @@ namespace QuanLiQuanTraSua
 {
     public partial class fAdmin : Form
     {
-        DBConection _dbConnection = new DBConection();
-        
-        
-       
-        DataSet ds;
-        
-        DataTable Order;       
+       private  DBConection _dbConnection = new DBConection();     
         public fAdmin()
         {
             InitializeComponent();
+            dgvLoaisp.DataSource = GetDataSetLoaiSP();
+            dgvsanpham.DataSource = GetDataSetSP();
+            dgvtaikhoan.DataSource = GetDataSetTaiKhoan();
 
-            
         }
-        
-        private void GetDataSetSP()
+        public DataTable GetDataSetSP()
         {
+            DataTable spTable; 
             try
             {
                 
                 string sql = @"SELECT * FROM SanPham";
                 
                 
-                DataTable spTable = _dbConnection.Getdata(sql);
-                
-                dgvsanpham.DataSource = spTable;
+                spTable = _dbConnection.Getdata(sql);
+
+                return spTable;
 
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return null;
             }
            
         }
@@ -67,29 +64,34 @@ namespace QuanLiQuanTraSua
         }       
         private void btnthemsp_Click(object sender, EventArgs e)
         {
-            
-            
+            string masp = txtmasp.Text;
+            string tensp = txttensp.Text;
+            string maloaisp = cmbLoaiSP.SelectedValue.ToString();
+            string dongia = txtdongia.Text;
+            string soluong = txtsoluong.Text;
+
+
+            themsp(masp, tensp, maloaisp, dongia, soluong);
+        }
+        public void themsp(string masp, string tensp, string maloaisp, string dongia, string soluong)
+        {
             try
             {
-                string masp = txtmasp.Text;
-                string tensp = txttensp.Text;
-                string maloaisp = cmbLoaiSP.SelectedValue.ToString();
-                string dongia = txtdongia.Text;
-                string soluong = txtsoluong.Text;
                 
+
                 string sql = $" INSERT [dbo].[SanPham] ([MaSP], [TenSP], [MaLoaiSP], [DonGia], [SoLuong]) VALUES (N'{masp}   ', N'{tensp}', N'{maloaisp} ', {dongia}, {soluong})";
 
                 bool isSuccess = _dbConnection.execData(sql);
-                    if(isSuccess)
+                if (isSuccess)
                 {
-                    GetDataSetSP();
+                    dgvsanpham.DataSource = GetDataSetSP();
                 }
-                    else
+                else
                 {
                     MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
                 }
-                
-               
+
+
 
             }
             catch (SqlException)
@@ -97,28 +99,32 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
 
             }
-            
         }
         private void btnxoasp_Click(object sender, EventArgs e)
         {
+          //  int index = dgvsanpham.CurrentRow.Index;
+           // DataGridViewRow cr = dgvsanpham.Rows[index];
+            string masp = txtmasp.Text;
+            xoasp(masp);
 
+        }
+        public void xoasp(string masp)
+        {
             try
             {
                 if (dgvsanpham.Rows.Count > 0)
                 {
-                    int index = dgvsanpham.CurrentRow.Index;
-                    DataGridViewRow cr = dgvsanpham.Rows[index];
-                    string masp = txtmasp.Text;
+                    
                     string sql = $"delete from [QuanLiQuanTraSua].[dbo].[SanPham] where MaSP = N'{masp}'";
                     bool isSuccess = _dbConnection.execData(sql);
                     if (isSuccess)
                     {
-                        dgvsanpham.Rows.Remove(cr);
-                        GetDataSetSP();
+                      //  dgvsanpham.Rows.Remove(cr);
+                        dgvsanpham.DataSource = GetDataSetSP();
                     }
                     else
                     {
-                        MessageBox.Show("Không thể xoa Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
+                        MessageBox.Show("Không thể xoa Sản Phẩm khỏi cơ sở dữ liệu!", "Thông Báo");
                     }
                 }
             }
@@ -127,40 +133,33 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
             }
-
         }
         private void btnsuasp_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    if (dgvsanpham.Rows.Count > 0)
-            //    {
-            //        Order = ds.Tables[0];
-            //        int index = dgvsanpham.CurrentRow.Index;
-            //        DataRow dr = Order.Rows[index];// du lieu dong  =  gia tri dong hien tai
-            //        dr.BeginEdit();// bat dau sua
-            //        dr["TenSP"] = txttensp.Text;
-            //        dr["MaLoaiSP"] = cmbLoaiSP.SelectedValue;
-            //        dr["DonGia"] = txtdongia.Text;
-            //        dr["SoLuong"] = txtsoluong.Text;
-            //        dr.EndEdit();// ket thuc sua
-            //    }
-            //}
-            //catch (SqlException)
-            //{
-            //    MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
-
-            //}
+           
             string masp = txtmasp.Text;
             string tensp = txttensp.Text;
             string maloaisp = cmbLoaiSP.SelectedValue.ToString();
             string dongia = txtdongia.Text;
             string soluong = txtsoluong.Text;
 
-            string sql = $" Update [dbo].[SanPham] ([MaSP], [TenSP], [MaLoaiSP], [DonGia], [SoLuong]) VALUES (N'{masp}   ', N'{tensp}', N'{maloaisp} ', {dongia}, {soluong})";
+            suasp(masp, tensp, maloaisp, dongia, soluong);
 
+            
         }
-       
+       public void suasp(string masp, string tensp, string maloaisp, string dongia, string soluong)
+        {
+            string sql = $" Update SanPham SET  TenSP =N' {tensp} ', MaLoaiSP =N'{maloaisp} ', DonGia =N'{dongia} ', SoLuong =N'{soluong} ' where MaSP =N'{masp} '";
+            bool isSuccess = _dbConnection.execData(sql);
+            if (isSuccess)
+            {
+                dgvsanpham.DataSource = GetDataSetSP();
+            }
+            else
+            {
+                MessageBox.Show("Không thể sửa Sản Phẩm trong cơ sở dữ liệu!", "Thông Báo");
+            }
+        }
 
         private void dgvsanpham_SelectionChanged(object sender, EventArgs e)
         {
@@ -184,21 +183,27 @@ namespace QuanLiQuanTraSua
                 txtMatKhau.Text = dgvtaikhoan.CurrentRow.Cells["MatKhau"].Value.ToString();
             }
         }
-        private void GetDataSetTaiKhoan()
+        public DataTable GetDataSetTaiKhoan()
         {
-            
+            DataTable spTable; 
+
             try
             {
                 string sql = @"SELECT * FROM TaiKhoan";
-                
-                dgvtaikhoan.DataSource = ds.Tables[0];
+
+                spTable = _dbConnection.Getdata(sql);
+
+
+                return spTable;
 
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return null;
             }
-            
+
+
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
@@ -216,84 +221,98 @@ namespace QuanLiQuanTraSua
                 e.Value = new String('*', e.Value.ToString().Length);
             }
         }
-        private void btnluutk_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
-        private void btnhuytk_Click(object sender, EventArgs e)
-        {
-            ds.Tables[0].RejectChanges();
-        }
+        
         private void btnsuatk_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                if (dgvtaikhoan.Rows.Count > 0)
-                {
-                    Order = ds.Tables[0];
-                    int index = dgvtaikhoan.CurrentRow.Index;
-                    DataRow dr = Order.Rows[index];// du lieu dong  =  gia tri dong hien tai
-                    dr.BeginEdit();// bat dau sua
-                    dr["TenDangNhap"] = txtusername.Text;
-                    dr["TenHienThi"] = txtdisplayName.Text;
-                    dr["MatKhau"] = txtMatKhau.Text;
-                    dr["ChucDanh"] = txtChucDanh.Text;
-                    dr.EndEdit();// ket thuc sua
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
+            string tendangnhap = txtusername.Text;
+            string tenhienthi = txtdisplayName.Text;
+            string matkhau = txtMatKhau.Text;
+            string chucdanh = txtChucDanh.Text;
 
+            suatk(tendangnhap, tenhienthi, matkhau, chucdanh);
+           
+        }
+        public void suatk(string tendangnhap, string tenhienthi, string matkhau, string chucdanh)
+        {
+            string sql = $" Update TaiKhoan SET   TenHienThi=N'{tenhienthi}', MatKhau =N'{matkhau}', ChucDanh =N'{chucdanh}'  where TenDangNhap =N'{tendangnhap}'";
+            bool isSuccess = _dbConnection.execData(sql);
+            if (isSuccess)
+            {
+                dgvtaikhoan.DataSource = GetDataSetTaiKhoan();
             }
-            
+            else
+            {
+                MessageBox.Show("Không thể sửa tài khoản trong cơ sở dữ liệu!", "Thông Báo");
+            }
+
         }
         private void btnthemtk_Click(object sender, EventArgs e)
         {
-            
+
+            string tendn = txtusername.Text;
+            string tenhienthi = txtdisplayName.Text;
+            string chucdanh = txtChucDanh.Text;
+            string matkhau = txtMatKhau.Text;
+            themtk(tendn, tenhienthi, chucdanh, matkhau);
+        }
+        public void themtk(string tendn, string tenhienthi, string chucdanh, string matkhau)
+        {
             try
             {
-                //string them;
-                //them = "INSERT [dbo].[TaiKhoan] VALUES (N'"+txtusername+"', N'"+txtdisplayName+"', N'"+txtMatKhau+"', N'"+txtChucDanh+"')";
-                //SqlCommand commandthem = new SqlCommand(them, cnn);
-                //commandthem.ExecuteNonQuery();
-                //string sql = @"SELECT * FROM SanPham";
-                //da = new SqlDataAdapter(sql, cnn);
-                //cb = new SqlCommandBuilder(da);
-                //ds = new DataSet();
-                //DataTable table = new DataTable();
-                //da.Fill(table);
-                //dgvsanpham.DataSource = table;
-                string sql = @"SELECT * FROM TaiKhoan";
-                
-                dgvtaikhoan.DataSource = ds.Tables[0];
-                DataRow tt = ds.Tables[0].NewRow();
-                tt["TenDangNhap"] = txtusername.Text;
-                tt["TenHienThi"] = txtdisplayName.Text;
-                tt["ChucDanh"] = txtChucDanh.Text;
-                tt["MatKhau"] = txtMatKhau.Text;
-                ds.Tables[0].Rows.Add(tt);
+               
+
+                string sql = $"INSERT [dbo].[TaiKhoan] ([TenDangNhap], [TenHienThi], [MatKhau], [ChucDanh]) VALUES (N'{tendn}', N'{tenhienthi}', {matkhau} ,N'{chucdanh}')";
+
+                bool isSuccess = _dbConnection.execData(sql);
+                if (isSuccess)
+                {
+                    dgvtaikhoan.DataSource = GetDataSetTaiKhoan();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể thêm tài Khoản vào cơ sở dữ liệu!", "Thông Báo");
+                }
+
+
+
             }
             catch (SqlException)
             {
                 MessageBox.Show("Không thể thêm Tài Khoản vào cơ sở dữ liệu!", "Thông Báo");
+
             }
-            
         }
 
         private void btnxoatk_Click(object sender, EventArgs e)
         {
-            
+
+           // int index = dgvsanpham.CurrentRow.Index;
+           // DataGridViewRow cr = dgvsanpham.Rows[index];
+            string tendangnhap = txtusername.Text;
+           
+            xoatk(tendangnhap);
+
+        }
+        public void xoatk(string tendangnhap)
+        {
             try
             {
-                if (dgvtaikhoan.Rows.Count > 0)
+                if (dgvsanpham.Rows.Count > 0)
                 {
-                    int index = dgvtaikhoan.CurrentRow.Index;
-                    DataGridViewRow dr = dgvtaikhoan.Rows[index];
-                    dgvtaikhoan.Rows.Remove(dr);
-
+                   
+                    string sql = $"delete from [QuanLiQuanTraSua].[dbo].[TaiKhoan] where TenDangNhap = N'{tendangnhap}' ";
+                    bool isSuccess = _dbConnection.execData(sql);
+                    if (isSuccess)
+                    {
+                        //dgvsanpham.Rows.Remove(cr);
+                        dgvtaikhoan.DataSource = GetDataSetTaiKhoan();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa tài khoản khỏi cơ sở dữ liệu!", "Thông Báo");
+                    }
                 }
             }
             catch (SqlException)
@@ -301,69 +320,97 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
             }
-            
-
         }
         //----------------------LOẠI SẢN PHẨM--------------
-        private void GetDataSetLoaiSP()
+        public  DataTable GetDataSetLoaiSP()
         {
-            
+            DataTable spTable;
+
             try
             {
+
                 string sql = @"SELECT * FROM LoaiSanPham";
-                
-                ds = new DataSet();
-                
-                dgvLoaisp.DataSource = ds.Tables[0];
+
+
+               
+                spTable = _dbConnection.Getdata(sql);
+                return spTable;
+
+
 
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return null;
             }
             
         }
-        private void dgvLoaisp_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvLoaisp.CurrentRow != null)
-            {
-                txtMaloaiSP.Text = dgvLoaisp.CurrentRow.Cells["MaLoaiSP"].Value.ToString();
-                txtTenLoaisp.Text = dgvLoaisp.CurrentRow.Cells["TenLoaiSP"].Value.ToString();
-            }
-        }
+       
         private void btnthemlsp_Click(object sender, EventArgs e)
         {
-            
+            string maloaisp = txtMaloaiSP.Text;
+            string tenloaisp = txtTenLoaisp.Text;
+            themlsp(maloaisp, tenloaisp);
+
+
+        }      
+        public void themlsp(string maloaisp, string tenloaisp)
+        {
             try
             {
-                string sql = @"SELECT * FROM LoaiSanPham";
                 
-                ds = new DataSet();
-               
-                dgvLoaisp.DataSource = ds.Tables[0];
-                DataRow tt = ds.Tables[0].NewRow();
-                tt["MaLoaiSP"] = txtMaloaiSP.Text;
-                tt["TenLoaiSP"] = txtTenLoaisp.Text;
-                ds.Tables[0].Rows.Add(tt);
+
+
+                string sql = $"INSERT [dbo].[LoaiSanPham] ([MaLoaiSP], [TenLoaiSP]) VALUES (N'{maloaisp}   ', N'{tenloaisp}')";
+
+                bool isSuccess = _dbConnection.execData(sql);
+                if (isSuccess)
+                {
+                    dgvLoaisp.DataSource = GetDataSetLoaiSP();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể thêm loai sp vào cơ sở dữ liệu!", "Thông Báo");
+                }
+
+
+
             }
             catch (SqlException)
             {
-                MessageBox.Show("Không thể thêm Sản Phẩm vào cơ sở dữ liệu!", "Thông Báo");
+                MessageBox.Show("Không thể thêm loai sp vào cơ sở dữ liệu!", "Thông Báo");
 
             }
-            
-        }       
+        }
         private void btnxoalsp_Click(object sender, EventArgs e)
         {
+           // int index = dgvLoaisp.CurrentRow.Index;
+           // DataGridViewRow cr = dgvLoaisp.Rows[index];
+            string maloaisp = txtMaloaiSP.Text;
+            xoalsp(maloaisp);
 
-            
+
+        }
+        public void xoalsp(string maloaisp)
+        {
             try
             {
-                if (dgvsanpham.Rows.Count > 0)
+                if (dgvLoaisp.Rows.Count > 0)
                 {
-                    int index = dgvLoaisp.CurrentRow.Index;
-                    DataGridViewRow cr = dgvLoaisp.Rows[index];
-                    dgvLoaisp.Rows.Remove(cr);
+                   
+
+                    string sql = $"delete from [QuanLiQuanTraSua].[dbo].[LoaiSanPham] where MaLoaiSP = N'{maloaisp}' ";
+                    bool isSuccess = _dbConnection.execData(sql);
+                    if (isSuccess)
+                    {
+                       // dgvLoaisp.Rows.Remove(cr);
+                        dgvLoaisp.DataSource = GetDataSetLoaiSP();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xoa loại sản phẩm tu cơ sở dữ liệu!", "Thông Báo");
+                    }
                 }
             }
             catch (SqlException)
@@ -371,37 +418,33 @@ namespace QuanLiQuanTraSua
                 MessageBox.Show("Không thể xóa dữ liệu!", "Thông Báo");
 
             }
-            
         }
 
         private void btnsualsp_Click(object sender, EventArgs e)
         {
 
-            
-            try
-            {
-                if (dgvLoaisp.Rows.Count > 0)
-                {
-                    Order = ds.Tables[0];
-                    int index = dgvLoaisp.CurrentRow.Index;
-                    DataRow dr = Order.Rows[index];
-                    dr.BeginEdit();
-                    dr["TenLoaiSP"] = txtTenLoaisp.Text;
-                    dr.EndEdit();
-                }
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("Không thể sửa dữ liệu!", "Thông Báo");
 
-            }
-            
+            string maloaisp = txtMaloaiSP.Text;
+            string tenloaisp = txtTenLoaisp.Text;
+
+            sualsp(maloaisp, tenloaisp);
+          
+
         }
-
-        private void btnhuylsp_Click(object sender, EventArgs e)
+        public void sualsp(string maloaisp, string tenloaisp)
         {
-            ds.Tables[0].RejectChanges();
+            string sql = $" Update LoaiSanPham SET    TenLoaiSP =N'{tenloaisp}' where MALoaiSP =N'{maloaisp} '";
+            bool isSuccess = _dbConnection.execData(sql);
+            if (isSuccess)
+            {
+                dgvLoaisp.DataSource = GetDataSetLoaiSP();
+            }
+            else
+            {
+                MessageBox.Show("Không thể sửa loại sp từ cơ sở dữ liệu!", "Thông Báo");
+            }
         }
+        
 
         private void btnluulsp_Click(object sender, EventArgs e)
         {
@@ -420,9 +463,8 @@ namespace QuanLiQuanTraSua
         private void fAdmin_Load(object sender, EventArgs e)
         {
               GetDataToComboboxLoaiSP();
-              GetDataSetSP();
-            //GetDataSetLoaiSP();
-            //GetDataSetTaiKhoan();
+            dgvLoaisp.DataSource = GetDataSetLoaiSP();
+
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -430,16 +472,26 @@ namespace QuanLiQuanTraSua
             if (tabControl1.SelectedTab.Name == "tabProduct")
             {
                 GetDataToComboboxLoaiSP();
-                GetDataSetSP();
+                dgvsanpham.DataSource = GetDataSetSP();
             }
             else if (tabControl1.SelectedTab.Name == "tabTypeProduct")
             {
-                GetDataSetLoaiSP();
+                dgvLoaisp.DataSource = GetDataSetLoaiSP();
             }
             else if (tabControl1.SelectedTab.Name == "tabAccount")
             {
-                GetDataSetTaiKhoan();
+                dgvtaikhoan.DataSource = GetDataSetTaiKhoan();
 
+            }
+        }
+
+        private void dgvLoaisp_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvLoaisp.CurrentRow != null)
+            {
+               
+                txtMaloaiSP.Text = dgvLoaisp.CurrentRow.Cells["MaLoaiSP"].Value.ToString();
+                txtTenLoaisp.Text = dgvLoaisp.CurrentRow.Cells["TenLoaiSP"].Value.ToString();
             }
         }
     }

@@ -52,8 +52,6 @@
             this.txtmasp = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tabTypeProduct = new System.Windows.Forms.TabPage();
-            this.btnluulsp = new System.Windows.Forms.Button();
-            this.btnhuylsp = new System.Windows.Forms.Button();
             this.btnsualsp = new System.Windows.Forms.Button();
             this.btnxoalsp = new System.Windows.Forms.Button();
             this.btnthemlsp = new System.Windows.Forms.Button();
@@ -66,7 +64,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tabAccount = new System.Windows.Forms.TabPage();
-            this.btnResetPass = new System.Windows.Forms.Button();
             this.panel26 = new System.Windows.Forms.Panel();
             this.txtChucDanh = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -79,8 +76,6 @@
             this.panel24 = new System.Windows.Forms.Panel();
             this.txtusername = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnhuytk = new System.Windows.Forms.Button();
-            this.btnluutk = new System.Windows.Forms.Button();
             this.btnsuatk = new System.Windows.Forms.Button();
             this.btnxoatk = new System.Windows.Forms.Button();
             this.btnthemtk = new System.Windows.Forms.Button();
@@ -340,8 +335,6 @@
             // 
             // tabTypeProduct
             // 
-            this.tabTypeProduct.Controls.Add(this.btnluulsp);
-            this.tabTypeProduct.Controls.Add(this.btnhuylsp);
             this.tabTypeProduct.Controls.Add(this.btnsualsp);
             this.tabTypeProduct.Controls.Add(this.btnxoalsp);
             this.tabTypeProduct.Controls.Add(this.btnthemlsp);
@@ -356,28 +349,6 @@
             this.tabTypeProduct.TabIndex = 2;
             this.tabTypeProduct.Text = "Loại thực phẩm";
             this.tabTypeProduct.UseVisualStyleBackColor = true;
-            // 
-            // btnluulsp
-            // 
-            this.btnluulsp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnluulsp.Location = new System.Drawing.Point(567, 109);
-            this.btnluulsp.Name = "btnluulsp";
-            this.btnluulsp.Size = new System.Drawing.Size(75, 36);
-            this.btnluulsp.TabIndex = 20;
-            this.btnluulsp.Text = "Lưu";
-            this.btnluulsp.UseVisualStyleBackColor = true;
-            this.btnluulsp.Click += new System.EventHandler(this.btnluulsp_Click);
-            // 
-            // btnhuylsp
-            // 
-            this.btnhuylsp.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnhuylsp.Location = new System.Drawing.Point(521, 227);
-            this.btnhuylsp.Name = "btnhuylsp";
-            this.btnhuylsp.Size = new System.Drawing.Size(75, 36);
-            this.btnhuylsp.TabIndex = 19;
-            this.btnhuylsp.Text = "Hủy";
-            this.btnhuylsp.UseVisualStyleBackColor = true;
-            this.btnhuylsp.Click += new System.EventHandler(this.btnhuylsp_Click);
             // 
             // btnsualsp
             // 
@@ -446,6 +417,7 @@
             this.dgvLoaisp.Name = "dgvLoaisp";
             this.dgvLoaisp.Size = new System.Drawing.Size(682, 171);
             this.dgvLoaisp.TabIndex = 14;
+            this.dgvLoaisp.SelectionChanged += new System.EventHandler(this.dgvLoaisp_SelectionChanged);
             // 
             // panel19
             // 
@@ -489,13 +461,10 @@
             // 
             // tabAccount
             // 
-            this.tabAccount.Controls.Add(this.btnResetPass);
             this.tabAccount.Controls.Add(this.panel26);
             this.tabAccount.Controls.Add(this.panel25);
             this.tabAccount.Controls.Add(this.panel23);
             this.tabAccount.Controls.Add(this.panel24);
-            this.tabAccount.Controls.Add(this.btnhuytk);
-            this.tabAccount.Controls.Add(this.btnluutk);
             this.tabAccount.Controls.Add(this.btnsuatk);
             this.tabAccount.Controls.Add(this.btnxoatk);
             this.tabAccount.Controls.Add(this.btnthemtk);
@@ -508,22 +477,6 @@
             this.tabAccount.TabIndex = 3;
             this.tabAccount.Text = "Tài khoản ";
             this.tabAccount.UseVisualStyleBackColor = true;
-            // 
-            // btnResetPass
-            // 
-            this.btnResetPass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnResetPass.AutoEllipsis = true;
-            this.btnResetPass.BackColor = System.Drawing.Color.Blue;
-            this.btnResetPass.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetPass.ForeColor = System.Drawing.Color.White;
-            this.btnResetPass.Location = new System.Drawing.Point(522, 135);
-            this.btnResetPass.Name = "btnResetPass";
-            this.btnResetPass.Size = new System.Drawing.Size(119, 71);
-            this.btnResetPass.TabIndex = 19;
-            this.btnResetPass.Text = "Đặt Lại Mật Khẩu";
-            this.btnResetPass.UseVisualStyleBackColor = false;
-            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
             // panel26
             // 
@@ -633,28 +586,6 @@
             this.label20.Size = new System.Drawing.Size(134, 19);
             this.label20.TabIndex = 0;
             this.label20.Text = "Tên Đăng Nhập:";
-            // 
-            // btnhuytk
-            // 
-            this.btnhuytk.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnhuytk.Location = new System.Drawing.Point(584, 49);
-            this.btnhuytk.Name = "btnhuytk";
-            this.btnhuytk.Size = new System.Drawing.Size(75, 36);
-            this.btnhuytk.TabIndex = 14;
-            this.btnhuytk.Text = "Hủy";
-            this.btnhuytk.UseVisualStyleBackColor = true;
-            this.btnhuytk.Click += new System.EventHandler(this.btnhuytk_Click);
-            // 
-            // btnluutk
-            // 
-            this.btnluutk.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnluutk.Location = new System.Drawing.Point(450, 49);
-            this.btnluutk.Name = "btnluutk";
-            this.btnluutk.Size = new System.Drawing.Size(75, 36);
-            this.btnluutk.TabIndex = 13;
-            this.btnluutk.Text = "Lưu";
-            this.btnluutk.UseVisualStyleBackColor = true;
-            this.btnluutk.Click += new System.EventHandler(this.btnluutk_Click);
             // 
             // btnsuatk
             // 
@@ -784,8 +715,6 @@
         private System.Windows.Forms.TextBox txtmasp;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TabPage tabTypeProduct;
-        private System.Windows.Forms.Button btnluulsp;
-        private System.Windows.Forms.Button btnhuylsp;
         private System.Windows.Forms.Button btnsualsp;
         private System.Windows.Forms.Button btnxoalsp;
         private System.Windows.Forms.Button btnthemlsp;
@@ -798,7 +727,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TabPage tabAccount;
-        private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.TextBox txtChucDanh;
         private System.Windows.Forms.Label label22;
@@ -811,8 +739,6 @@
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.TextBox txtusername;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button btnhuytk;
-        private System.Windows.Forms.Button btnluutk;
         private System.Windows.Forms.Button btnsuatk;
         private System.Windows.Forms.Button btnxoatk;
         private System.Windows.Forms.Button btnthemtk;

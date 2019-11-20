@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace QuanLiQuanTraSua
 {
-    class DBConection
+    public class DBConection
     {
         
 
@@ -19,7 +19,7 @@ namespace QuanLiQuanTraSua
             string conection= @"Data Source=.\SQLEXPRESS;Initial Catalog=QuanLiQuanTraSua;Integrated Security=True";
             cnn = new SqlConnection(conection);
         }
-        private void Connect()
+        public  void Connect()
         {
           
             if (cnn != null && cnn.State == ConnectionState.Closed)
@@ -29,7 +29,7 @@ namespace QuanLiQuanTraSua
             }
 
         }
-        private void DisConnect()
+        public void DisConnect()
         {
             if (cnn != null && cnn.State == ConnectionState.Open)
             {

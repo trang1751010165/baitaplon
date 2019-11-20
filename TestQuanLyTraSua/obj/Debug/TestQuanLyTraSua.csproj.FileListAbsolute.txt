@@ -1,0 +1,17 @@
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\obj\Debug\TestQuanLyTraSua.csprojAssemblyReference.cache
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\obj\Debug\TestQuanLyTraSua.csproj.CoreCompileInputs.cache
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\TestQuanLyTraSua.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\TestQuanLyTraSua.pdb
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\QuanLiQuanTraSua.exe
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\QuanLiQuanTraSua.pdb
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\QuanLiQuanTraSua.exe.config
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\obj\Debug\TestQuanLyTraSua.csproj.CopyComplete
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\obj\Debug\TestQuanLyTraSua.dll
+C:\Users\trang\Desktop\New folder\baitaplon\TestQuanLyTraSua\obj\Debug\TestQuanLyTraSua.pdb

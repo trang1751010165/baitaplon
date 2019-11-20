@@ -52,11 +52,12 @@ namespace QuanLiQuanTraSua
             string ten = txtUserName.Text;
             string pas = txtPassWord.Text;
             string chu = cbChucDanh.Text;
+            
             try
             {
                 kiemtradn_class kt = new kiemtradn_class();
 
-                if (kt.KiemTraDangNhap(ten, pas) == true)
+                if (kt.KiemTraDangNhap(ten, pas, chu) == true)
                 {
                     fManage f = new fManage();                   
                     fManage.quyen = chu;

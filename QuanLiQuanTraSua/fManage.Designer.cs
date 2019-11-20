@@ -33,9 +33,6 @@
             this.adminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.addminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thôngTinCáNhânToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -47,6 +44,7 @@
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.txtThanhTien = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvTimSP = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnTim = new System.Windows.Forms.Button();
             this.txtTim = new System.Windows.Forms.TextBox();
@@ -55,8 +53,6 @@
             this.radTheoTen = new System.Windows.Forms.RadioButton();
             this.dgvHDChiTietHD = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnHuy = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtTenSP = new System.Windows.Forms.TextBox();
@@ -77,17 +73,16 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dgvTimSP = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTimSP)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHDChiTietHD)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTimSP)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -106,8 +101,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addminToolStripMenuItem,
-            this.thôngTinTàiKhoảnToolStripMenuItem});
+            this.addminToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1044, 27);
@@ -122,30 +116,6 @@
             this.addminToolStripMenuItem.Size = new System.Drawing.Size(70, 23);
             this.addminToolStripMenuItem.Text = "Admin";
             this.addminToolStripMenuItem.Click += new System.EventHandler(this.addminToolStripMenuItem_Click);
-            // 
-            // thôngTinTàiKhoảnToolStripMenuItem
-            // 
-            this.thôngTinTàiKhoảnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thôngTinCáNhânToolStripMenuItem,
-            this.đăngXuấtToolStripMenuItem});
-            this.thôngTinTàiKhoảnToolStripMenuItem.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.thôngTinTàiKhoảnToolStripMenuItem.Name = "thôngTinTàiKhoảnToolStripMenuItem";
-            this.thôngTinTàiKhoảnToolStripMenuItem.Size = new System.Drawing.Size(168, 23);
-            this.thôngTinTàiKhoảnToolStripMenuItem.Text = "Thông tin tài khoản";
-            // 
-            // thôngTinCáNhânToolStripMenuItem
-            // 
-            this.thôngTinCáNhânToolStripMenuItem.Name = "thôngTinCáNhânToolStripMenuItem";
-            this.thôngTinCáNhânToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
-            this.thôngTinCáNhânToolStripMenuItem.Text = "Thông tin cá nhân";
-            this.thôngTinCáNhânToolStripMenuItem.Click += new System.EventHandler(this.thôngTinCáNhânToolStripMenuItem_Click);
-            // 
-            // đăngXuấtToolStripMenuItem
-            // 
-            this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
-            this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
-            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // panel3
             // 
@@ -269,6 +239,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm Sản Phẩm";
             // 
+            // dgvTimSP
+            // 
+            this.dgvTimSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTimSP.Location = new System.Drawing.Point(0, 90);
+            this.dgvTimSP.Name = "dgvTimSP";
+            this.dgvTimSP.Size = new System.Drawing.Size(338, 131);
+            this.dgvTimSP.TabIndex = 25;
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnTim);
@@ -342,11 +320,10 @@
             this.dgvHDChiTietHD.Name = "dgvHDChiTietHD";
             this.dgvHDChiTietHD.Size = new System.Drawing.Size(692, 235);
             this.dgvHDChiTietHD.TabIndex = 14;
+            this.dgvHDChiTietHD.SelectionChanged += new System.EventHandler(this.dgvHDChiTietHD_SelectionChanged);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnHuy);
-            this.panel1.Controls.Add(this.btnLuu);
             this.panel1.Controls.Add(this.btnThem);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
@@ -354,32 +331,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(698, 284);
             this.panel1.TabIndex = 15;
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.BackColor = System.Drawing.Color.Blue;
-            this.btnHuy.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHuy.ForeColor = System.Drawing.Color.White;
-            this.btnHuy.Location = new System.Drawing.Point(487, 222);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(88, 51);
-            this.btnHuy.TabIndex = 10;
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.UseVisualStyleBackColor = false;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.BackColor = System.Drawing.Color.Blue;
-            this.btnLuu.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuu.ForeColor = System.Drawing.Color.White;
-            this.btnLuu.Location = new System.Drawing.Point(318, 222);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(88, 51);
-            this.btnLuu.TabIndex = 11;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = false;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnThem
             // 
@@ -575,14 +526,6 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Mã Hóa Đơn:";
             // 
-            // dgvTimSP
-            // 
-            this.dgvTimSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTimSP.Location = new System.Drawing.Point(0, 90);
-            this.dgvTimSP.Name = "dgvTimSP";
-            this.dgvTimSP.Size = new System.Drawing.Size(338, 131);
-            this.dgvTimSP.TabIndex = 25;
-            // 
             // fManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,6 +544,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTimSP)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHDChiTietHD)).EndInit();
@@ -609,7 +553,6 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTimSP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,9 +564,6 @@
         private System.Windows.Forms.ToolStripMenuItem adminToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem addminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem thôngTinTàiKhoảnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem thôngTinCáNhânToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
@@ -644,8 +584,6 @@
         private System.Windows.Forms.RadioButton radTheoTen;
         private System.Windows.Forms.DataGridView dgvHDChiTietHD;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnHuy;
-        private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox txtTenSP;

@@ -19,10 +19,10 @@ namespace QuanLiQuanTraSua
         SqlDataAdapter da, daa, adapter;
         string cnstr;
         DataSet ds, datasetmoi;
-        DataSet dataset;
+        
         SqlCommandBuilder cb;
         DataTable Order;
-        DataTable oder2;
+        
         public static string quyen;
 
         private void addminToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace QuanLiQuanTraSua
 
         private void fManage_Load(object sender, EventArgs e)
         {
-            if (quyen == "admin")
+            if (string.Compare(quyen,"admin",true)==0)
             {
                 addminToolStripMenuItem.Enabled = true;
             }
@@ -233,21 +233,29 @@ namespace QuanLiQuanTraSua
                 float tongtien2 = float.Parse(txtTongTien.Text);
                 float tientrakhach = tienkhachtra - tongtien2;
                 txtTienTraLai.Text = tientrakhach.ToString();
+                int index =dgvHDChiTietHD.CurrentRow.Index;
+                dgvHDChiTietHD.Rows.RemoveAt(index);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            LuuHD();
-        }
+       
 
-        private void btnHuy_Click(object sender, EventArgs e)
+        
+
+        private void dgvHDChiTietHD_SelectionChanged(object sender, EventArgs e)
         {
-            ds.RejectChanges();
+            if (dgvHDChiTietHD.CurrentRow != null)
+            {
+                txtThanhTien.Text = dgvHDChiTietHD.CurrentRow.Cells[2].Value.ToString();
+                txtTongTien.Text = dgvHDChiTietHD.CurrentRow.Cells[2].Value.ToString();
+                
+            }
         }
 
         private void GetDataToComboboxLoaiSP()
